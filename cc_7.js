@@ -57,3 +57,37 @@ const calculateLoyaltyDiscount = (amount, years) => {
 // Test data
 console.log(calculateLoyaltyDiscount(100, 6)); // Expected output: "Discounted Price: $85.00"
 console.log(calculateLoyaltyDiscount(200, 2)); // Expected output: "Discounted Price: $190.00"
+
+
+//Task 4: Parameters and Arguments
+
+// Function to calculate shipping cost
+function calculateShippingCost(weight, location, expedited = false) {
+    let baseCost, perPoundRate;
+
+    // Determine shipping cost based on location
+    if (location === "USA") {
+        baseCost = 5;
+        perPoundRate = 0.5;
+    } else if (location === "Canada") {
+        baseCost = 10;
+        perPoundRate = 0.7;
+    } else {
+        return "Invalid location"; // Error handling for unsupported locations
+    }
+
+    // Calculate total shipping cost
+    let totalCost = baseCost + (weight * perPoundRate);
+
+    // Add expedited shipping fee if true
+    if (expedited) {
+        totalCost += 10;
+    }
+
+    // Format to 2 decimal places
+    return `Shipping Cost: $${totalCost.toFixed(2)}`;
+}
+
+// Test data
+console.log(calculateShippingCost(10, "USA", true));  // Expected output: "Shipping Cost: $20.00"
+console.log(calculateShippingCost(5, "Canada", false)); // Expected output: "Shipping Cost: $13.50"
